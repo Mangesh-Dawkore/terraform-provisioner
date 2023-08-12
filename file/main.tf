@@ -20,9 +20,10 @@ resource "aws_instance" "my_server" {
   tags = {
     Name = "myserver"
   }
-  provisioner "file" {
-    content = "Hello DevOps World"
-    destination = "/home/ec2-user/devops.txt"
+  provisioner "remote-exec" {
+    inline = [
+      "echo ${self.private_ip} >> /home/ec2-user/private_ips.txt"
+    ]
     connection {
       type        = "ssh"
       user        = "ec2-user"
