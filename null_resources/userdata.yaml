@@ -1,0 +1,8 @@
+#cloud-config
+packages:
+  - httpd
+runcmd:
+  - yum upgrade -y
+  - yum update -y
+  - systemctl start httpd
+  - sudo systemctl enable httpd
